@@ -81,15 +81,28 @@
   display: flex;
   padding: 10px;
 }
+.card-avatar-username > img {
+  border-radius: 50%;
+  height: 25px;
+  margin-right: 10px;
+  object-fit: cover;
+  width: 25px;
+}
 .card-avatar-username > span {
   color: #999;
   font-size: 12px;
 }
-.card-container img {
+.card-container .picture-card img {
+  border: red solid 1px;
   height: 360px;
   object-fit: cover;
   width: 235px;
 }
+/* .card-container img {
+  height: 360px;
+  object-fit: cover;
+  width: 235px;
+} */
 .card-container div:last-child {
   display: flex;
   flex-direction: column;

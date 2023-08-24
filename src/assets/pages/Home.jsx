@@ -41,27 +41,46 @@ const Home = () => {
         {data.offers.map((offer) => {
           //   console.log(offer);
           return (
-            <div className="card-container" key={offer._id}>
-              <Link
-                to={`/offer/${offer._id}`}
-                style={{ textDecoration: "none" }}
-              >
-                <div className="card-avatar-username">
-                  <span>{offer.product_name}</span>
-                </div>
-                <div>
+            <Link
+              className="card-container"
+              key={offer._id}
+              to={`/offer/${offer._id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <div className="card-avatar-username">
+                {offer.owner.account.avatar && (
                   <img
-                    src={offer.product_pictures[0].secure_url}
-                    alt={offer.product_name}
+                    src={offer.owner.account.avatar.secure_url}
+                    alt={offer.owner.account.username}
                   />
-                </div>
-                <div>{offer.product_price} €</div>
-              </Link>
-            </div>
+                )}
+                <span>{offer.owner.account.username}</span>
+              </div>
+              <div className="picture-card">
+                <img
+                  src={offer.product_image.secure_url}
+                  alt={offer.product_name}
+                />
+              </div>
+              <p>{offer.product_price} €</p>
+              {/* <p>{offer.product_details[0].MARQUE}</p> */}
+              {offer.product_details.map((detail, index) => {
+                //   if (detail.MARQUE) {
+                //     return <p key={index}>{detail.MARQUE}</p>;
+                //   } else if (detail.TAILLE) {
+                //     return <p key={index}>{detail.TAILLE}</p>;
+                //   } else {
+                //     return null;
+                //   }
+                if (detail.MARQUE || detail.TAILLE) {
+                  return <p key={index}>{detail.MARQUE || detail.TAILLE}</p>;
+                } else {
+                  return null;
+                }
+              })}
+            </Link>
           );
         })}
-
-        <p>Je suis la page Home</p>
       </section>
     </div>
   );
