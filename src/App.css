@@ -93,7 +93,6 @@
   font-size: 12px;
 }
 .card-container .picture-card img {
-  border: red solid 1px;
   height: 360px;
   object-fit: cover;
   width: 235px;

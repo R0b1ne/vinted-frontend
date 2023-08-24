@@ -5,6 +5,7 @@ import "./App.css";
 //Import Pages
 import Home from "./assets/pages/Home";
 import Offer from "./assets/pages/Offer";
+import Signup from "./assets/pages/Signup";
 
 //Import Components
 import Header from "./components/Header";
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/offer/:id" element={<Offer />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
       </Routes>
     </Router>
   );

@@ -1,12 +1,13 @@
 import vintedLogo from "../assets/images/vintedLogo.png";
+import { Link } from "react-router-dom"; //rappel
 
 const Header = () => {
   return (
     <header>
       <div className="header-container">
-        <div>
+        <Link to="/">
           <img src={vintedLogo} alt="logo" />
-        </div>
+        </Link>
         <div>
           <form>
             <input
@@ -17,7 +18,9 @@ const Header = () => {
           </form>
         </div>
         <div className="header-buttons">
-          <button className="header-button">S'inscrire</button>
+          <Link to="/signup">
+            <button className="header-button">S'inscrire</button>
+          </Link>
           <button className="header-button">Se connecter</button>
           <button className="header-button">Vends tes articles</button>
         </div>
