@@ -1,13 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = ({ handleToken }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletter, setNewsletter] = useState(false);
+
+  //   State qui gère le message d'erreur
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -22,20 +24,33 @@ const Signup = () => {
       newsletter: newsletter,
     };
     try {
+      //   Je fais disparaitre le message d'erreur
+      setErrorMessage("");
+      //   Requête axios :
+      // - Premier argument : l'url que j'interroge
+      // - deuxième : le body que j'envoi
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",
         post
       );
-      Cookies.set("token", response.data.token, { expires: 14 });
+      handleToken(response.data.token);
       // If the token has been created redirect to "/"
-      if (response.data.token) {
-        navigate("/");
-      }
+      navigate("/");
 
       console.log("response.data => ", response.data);
       console.log("response.data.token => ", response.data.token);
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.response.data); // Pour voir le message d'erreur transmis par le serveur
+      console.log(error.response); // Pour voir le status de la réponse
+      // Si je reçois le message "This email already has an account"
+      if (error.response.data.message === "This email already has an account") {
+        // Je met à jour mon state errorMessage
+        setErrorMessage(
+          "Ce mail est déjà utilisé, veuillez en choisir un autre :)"
+        );
+      } else if (error.response.data.message === "Missing parameters") {
+        setErrorMessage("Veuillez remplir tous les champs :)");
+      }
     }
   };
 
@@ -91,7 +106,9 @@ const Signup = () => {
           S'inscrire à notre newsletter
         </label>
         <input type="submit" value="S'inscrire" />
+        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       </form>
+      <Link to="/login">Tu as déjà un compte ? Connectes-toi !</Link>
     </div>
   );
 };
