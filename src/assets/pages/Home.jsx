@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import background from "../images/background.jpg";
 
-const Home = () => {
+const Home = ({ search, descPrice }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -11,7 +11,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
+          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${search}&sort=${descPrice}`
         );
         setData(response.data);
         setIsLoading(false);
@@ -20,7 +20,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [search, descPrice]);
 
   //   console.log(data);
   return isLoading ? (
@@ -33,7 +33,9 @@ const Home = () => {
       >
         <div>
           <h1>Prêts à faire du tri dans vos placards?</h1>
-          <button> Commencer à vendre</button>
+          <Link to="/publish">
+            <button> Commencer à vendre</button>
+          </Link>
         </div>
       </section>
 

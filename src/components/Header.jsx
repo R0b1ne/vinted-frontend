@@ -1,7 +1,14 @@
 import vintedLogo from "../assets/images/vintedLogo.png";
 import { Link } from "react-router-dom"; //rappel
 
-const Header = ({ token, handleToken }) => {
+const Header = ({
+  token,
+  handleToken,
+  search,
+  setSearch,
+  descPrice,
+  setdescPrice,
+}) => {
   return (
     <header>
       <div className="header-container">
@@ -12,10 +19,24 @@ const Header = ({ token, handleToken }) => {
           <form>
             <input
               type="text"
+              value={search}
               name="name"
               placeholder="Recherche des articles"
+              onChange={(event) => {
+                setSearch(event.target.value);
+              }}
             />
           </form>
+          <button
+            type="button"
+            value="submit"
+            onClick={() => {
+              setdescPrice("price-desc");
+              console.log(descPrice);
+            }}
+          >
+            Prix descendant
+          </button>
         </div>
         {token ? (
           <button
@@ -33,9 +54,11 @@ const Header = ({ token, handleToken }) => {
             <Link to="/Login">
               <button className="header-button">Se connecter</button>
             </Link>
-            <button className="header-button">Vends tes articles</button>
           </div>
         )}
+        <Link to="/Publish">
+          <button className="header-button">Vends tes articles</button>
+        </Link>
       </div>
     </header>
   );
