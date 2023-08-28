@@ -21,8 +21,10 @@ const Publish = ({ token }) => {
     try {
       // Je crée une nouvelle instance du constructeur FormData
       const formData = new FormData();
+
       // Rajouter 2 paires clef/valeur à mon formdata
       formData.append("picture", picture);
+      formData.append("title", title);
       formData.append("description", description);
       formData.append("brand", brand);
       formData.append("size", size);
@@ -47,7 +49,7 @@ const Publish = ({ token }) => {
         }
       );
       setImgFromCloudinary(response.data.secure_url);
-      console.log("response.data => ", response.formData);
+      console.log("response.data => ", response.data);
     } catch (error) {
       console.log(error.response);
     }
