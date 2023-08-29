@@ -1,3 +1,7 @@
+:root {
+  font-family: Maison Neue;
+}
+
 /* HEADER */
 .header-container {
   align-items: center;
@@ -122,7 +126,6 @@
   width: 1280px;
 }
 .offer-container img {
-  border: solid 1px red;
   height: 600px;
   object-fit: cover;
 }
@@ -179,4 +182,39 @@
 .form-publish img {
   object-fit: cover;
   height: 200px;
+}
+/* CheckOutForm */
+.checkOutForm-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  height: 500px;
+  background: #ebedee;
+}
+.checkOutForm-container form {
+  background: white;
+  padding: 25px;
+  height: 300px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.checkOutForm-container p {
+  display: flex;
+  justify-content: space-between;
+}
+.checkOutForm-details {
+  border-bottom: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 30px;
+}
+.checkOutForm-container button {
+  background: #02c06d;
+  color: white;
+  border: none;
+  height: 25px;
 }

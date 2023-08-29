@@ -26,7 +26,7 @@ const Payment = ({ token }) => {
       </Elements>
     </div>
   ) : (
-    <Navigate to="/signin" />
+    <Navigate to="/login" />
   );
 };
 export default Payment;

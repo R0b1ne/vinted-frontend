@@ -31,7 +31,7 @@ const CheckoutForm = ({ token, title, price }) => {
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/payment",
         {
-          stripeToken: stripeToken,
+          token: stripeToken,
           title: title,
           amount: price,
         }
@@ -46,16 +46,37 @@ const CheckoutForm = ({ token, title, price }) => {
       console.log(error.response.data);
     }
   };
+
+  const total = price + 0.4 + 0.8;
+
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Formulaire de paiement</h1>
-      <CardElement />
-      {paymentCompleted === true ? (
-        <p>Payment Completed</p>
-      ) : (
-        <input type="submit" disabled={isLoading} />
-      )}
-    </form>
+    <div className="checkOutForm-container">
+      <form onSubmit={handleSubmit}>
+        <h1>Résumé de la commmande</h1>
+        <div className="checkOutForm-details">
+          <p>
+            Commande <span>{price} €</span>
+          </p>
+          <p>
+            Frais protection acheteurs <span>0.4 €</span>
+          </p>
+          <p>
+            Frais de port <span>0.8 €</span>
+          </p>
+        </div>
+        <div>
+          <p>
+            Total <span>{total} €</span>
+          </p>
+        </div>
+        <CardElement />
+        {paymentCompleted === true ? (
+          <p>Payment Completed</p>
+        ) : (
+          <button disabled={isLoading}>Pay</button>
+        )}
+      </form>
+    </div>
   );
 };
 
