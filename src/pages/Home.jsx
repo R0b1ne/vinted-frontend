@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import background from "../images/background.jpg";
+import background from "../assets/images/background.jpg";
 
 const Home = ({ search, descPrice }) => {
   const [data, setData] = useState();
