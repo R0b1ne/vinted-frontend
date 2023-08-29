@@ -2,7 +2,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useState } from "react";
 
-const CheckoutForm = ({ title, price }) => {
+const CheckoutForm = ({ token, title, price }) => {
   // State qui sert à savoir si ma requête de paiement est en cour
   const [isLoading, setIsLoading] = useState(false);
   //   State qui sert à savoir si le paiement a été validé
@@ -22,8 +22,9 @@ const CheckoutForm = ({ title, price }) => {
       const cardElement = elements.getElement(CardElement);
       //   J'envoie ces informations à stripe pour qu'il valide l'existence de la carte
       const stripeResponse = await stripe.createToken(cardElement, {
-        name: "L'id de l'utilisateur", // J'envoie un identifiant de celui qui paye pour savoir qui est à l'origine de la transaction
+        name: token, // J'envoie un identifiant de celui qui paye pour savoir qui est à l'origine de la transaction
       });
+      console.log(token);
       console.log(stripeResponse);
       const stripeToken = stripeResponse.token.id;
       //   Je fais une requête à mon back et je lui envoie mon stripeToken
@@ -42,7 +43,7 @@ const CheckoutForm = ({ title, price }) => {
         setPaymentCompleted(true);
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error.response.data);
     }
   };
   return (
@@ -50,7 +51,7 @@ const CheckoutForm = ({ title, price }) => {
       <h1>Formulaire de paiement</h1>
       <CardElement />
       {paymentCompleted === true ? (
-        <p>Payement Completed</p>
+        <p>Payment Completed</p>
       ) : (
         <input type="submit" disabled={isLoading} />
       )}

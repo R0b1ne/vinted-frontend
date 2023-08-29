@@ -54,7 +54,7 @@ function App() {
           element={<Login handleToken={handleToken} />}
         ></Route>
         <Route path="/publish" element={<Publish token={token} />}></Route>
-        <Route path="/payment" element={<Payment />}></Route>
+        <Route path="/payment" element={<Payment token={token} />}></Route>
       </Routes>
     </Router>
   );
