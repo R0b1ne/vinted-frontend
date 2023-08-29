@@ -152,8 +152,7 @@
   display: flex;
   justify-content: center;
   margin-top: 50px;
-  width: 1280px;
-  height: 500px;
+  height: 800px;
   background: #ebedee;
 }
 .publish-container > div {
@@ -176,4 +175,8 @@
   border: 1px solid lightgrey;
   padding: 10px;
   background: white;
+}
+.form-publish img {
+  object-fit: cover;
+  height: 200px;
 }

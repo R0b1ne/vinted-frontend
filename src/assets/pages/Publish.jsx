@@ -1,10 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const Publish = ({ token }) => {
   const [picture, setPicture] = useState();
   // State qui contient l'url fourni par cloudinary
-  const [imgFromCloudinary, setImgFromCloudinary] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState("");
@@ -48,27 +48,29 @@ const Publish = ({ token }) => {
           },
         }
       );
-      setImgFromCloudinary(response.data.secure_url);
       console.log("response.data => ", response.data);
     } catch (error) {
       console.log(error.response);
     }
   };
 
-  return (
+  return token ? (
     <div className="publish-container">
       <div>
         <h2>Vends ton article</h2>
       </div>
       <form className="form-publish" onSubmit={handleSubmit}>
-        <div>
+        <div className="picture-publish">
+          <label htmlFor="filePicker"> + Choississez une image</label>
           <input
+            style={{ display: "none" }}
+            id="filePicker"
             type="file"
             onChange={(event) => {
               setPicture(event.target.files[0]);
             }}
           />
-          {imgFromCloudinary && <img src={imgFromCloudinary} alt="" />}
+          {picture && <img src={URL.createObjectURL(picture)} alt="" />}
         </div>
         <div>
           <input
@@ -141,6 +143,8 @@ const Publish = ({ token }) => {
         <input type="submit" value="Ajouter" />
       </form>
     </div>
+  ) : (
+    <Navigate to="/login" />
   );
 };
 export default Publish;
