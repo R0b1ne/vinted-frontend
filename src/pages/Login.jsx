@@ -9,7 +9,7 @@ const Login = ({ handleToken }) => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="login-container">
       <form
         onSubmit={async (event) => {
           event.preventDefault();
@@ -48,8 +48,10 @@ const Login = ({ handleToken }) => {
           }}
         />
         <input type="submit" value="Se connecter" />
+        <div>
+          <Link to="/signup">Pas encore de compte ? Inscris-toi !</Link>
+        </div>
       </form>
-      <Link to="/signup">Pas encore de compte ? Inscris-toi !</Link>
     </div>
   );
 };

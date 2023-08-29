@@ -72,9 +72,9 @@ const Signup = ({ handleToken }) => {
   //   console.log(newsletter);
 
   return (
-    <div>
-      <h1>S'inscrire</h1>
+    <div className="signup-container">
       <form onSubmit={handleSubmit}>
+        <h1>S'inscrire</h1>
         <input
           placeholder="Nom d'utilisateur"
           type="text"

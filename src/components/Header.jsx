@@ -35,7 +35,7 @@ const Header = ({
               console.log(descPrice);
             }}
           >
-            Prix descendant
+            Filter ⬇️
           </button>
         </div>
         {token ? (

@@ -136,7 +136,7 @@
   justify-content: space-between;
   padding: 40px;
   width: 400px;
-  height: 605px;
+  height: 520px;
 }
 .offer-infos button {
   background: #09b1ba;
@@ -150,13 +150,54 @@
   padding: 0 16px;
   width: 100%;
 }
-/* Home */
+/* Login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  height: 500px;
+  background: #ebedee;
+}
+.login-container form {
+  background: white;
+  height: 300px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+/* Signup */
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  height: 500px;
+  background: #ebedee;
+}
+.signup-container form {
+  background: white;
+  height: 300px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+/* Publish */
 .publish-container {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
   height: 800px;
   background: #ebedee;
+}
+.publish-container h2 {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #09b1ba;
 }
 .publish-container > div {
   justify-content: flex-start;
@@ -168,7 +209,6 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin-top: 20px;
 }
 .form-publish div {
   display: flex;
